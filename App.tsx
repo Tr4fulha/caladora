@@ -70,13 +70,13 @@ function App() {
 
   return (
     <div 
-        className={`w-full h-screen flex items-center justify-center p-4 transition-colors duration-500 ease-in-out ${currentStyles.bg} relative overflow-hidden`}
+        className={`w-full h-[100dvh] flex items-center justify-center p-4 transition-colors duration-500 ease-in-out ${currentStyles.bg} relative overflow-hidden`}
         style={backgroundStyle}
     >
       {/* Overlay for readability on custom backgrounds */}
       {theme.mode === 'custom' && <div className="absolute inset-0 bg-black/40 pointer-events-none"></div>}
 
-      <div className={`relative w-full max-w-[360px] rounded-3xl overflow-hidden shadow-2xl transition-all duration-300 flex flex-col ${currentStyles.appBg} backdrop-blur-2xl border border-white/5`}>
+      <div className={`relative w-full max-w-[360px] h-full max-h-[800px] sm:h-auto sm:rounded-3xl rounded-xl overflow-hidden shadow-2xl transition-all duration-300 flex flex-col ${currentStyles.appBg} backdrop-blur-2xl border border-white/5`}>
         
         {/* Painéis Sobrepostos (History) */}
         <HistoryPanel 
@@ -88,14 +88,14 @@ function App() {
         />
 
         {/* Header / Actions */}
-        <div className="flex justify-between items-center p-4 pb-2 z-10">
+        <div className="flex justify-between items-center p-4 pb-2 z-10 shrink-0">
             {/* Botão de Histórico */}
             <button 
                 onClick={() => setShowHistory(true)}
-                className={`p-2 rounded-full transition-colors ${theme.mode === 'light' ? 'hover:bg-gray-200 text-gray-600' : 'hover:bg-white/10 text-white'}`}
+                className={`p-3 rounded-full transition-colors ${theme.mode === 'light' ? 'hover:bg-gray-200 text-gray-600' : 'hover:bg-white/10 text-white'}`}
                 aria-label="Abrir Histórico"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
                 </svg>
             </button>
@@ -107,10 +107,10 @@ function App() {
             {/* Botão de Tema */}
             <button 
                 onClick={() => setShowThemeSelector(!showThemeSelector)}
-                className={`p-2 rounded-full transition-colors ${theme.mode === 'light' ? 'hover:bg-gray-200 text-gray-600' : 'hover:bg-white/10 text-white'}`}
+                className={`p-3 rounded-full transition-colors ${theme.mode === 'light' ? 'hover:bg-gray-200 text-gray-600' : 'hover:bg-white/10 text-white'}`}
                 aria-label="Mudar Tema"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
                 </svg>
             </button>
@@ -123,17 +123,17 @@ function App() {
         </div>
 
         {/* Display Area */}
-        <div className="flex flex-col items-end justify-end p-6 h-40 break-all relative">
+        <div className="flex flex-col items-end justify-end p-6 grow break-all relative min-h-[140px]">
             <div className={`text-sm mb-2 h-6 transition-colors ${currentStyles.displaySub} font-mono`}>
                 {formatOperand(previousOperand)} {operation}
             </div>
-            <div className={`text-5xl font-light tracking-tight transition-colors ${currentStyles.text} font-sans`}>
+            <div className={`text-6xl font-light tracking-tight transition-colors ${currentStyles.text} font-sans`}>
                 {formatOperand(currentOperand)}
             </div>
         </div>
 
         {/* Keypad */}
-        <div className={`p-4 grid grid-cols-4 gap-3 ${theme.mode === 'custom' ? 'bg-white/5' : 'bg-transparent'}`}>
+        <div className={`p-4 grid grid-cols-4 gap-3 ${theme.mode === 'custom' ? 'bg-white/5' : 'bg-transparent'} shrink-0`}>
             {BUTTON_LAYOUT.map((btn, index) => {
                 let btnClass = '';
                 if (btn.style === 'accent') btnClass = currentStyles.btnAccent;
@@ -155,8 +155,10 @@ function App() {
                         className={`
                             ${btnClass} 
                             ${spanClass}
-                            h-16 rounded-2xl text-xl font-medium transition-all duration-200 
+                            h-16 sm:h-16 h-[12vw] max-h-20
+                            rounded-2xl text-2xl font-medium transition-all duration-200 
                             active:scale-95 flex items-center justify-center select-none outline-none
+                            touch-manipulation
                         `}
                     >
                         {btn.label}
