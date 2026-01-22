@@ -2,8 +2,9 @@ import { CalculatorActionType } from './types';
 
 export const THEMES = {
   light: {
-    bg: 'bg-gray-100',
-    appBg: 'bg-white/90 backdrop-blur-xl',
+    bg: 'bg-gray-50',
+    appBg: 'bg-white',
+    cardBg: 'bg-gray-100/50',
     text: 'text-gray-900',
     displaySub: 'text-gray-500',
     btn: 'bg-white hover:bg-gray-50 active:bg-gray-200 text-gray-800 shadow-sm border border-gray-200',
@@ -12,19 +13,20 @@ export const THEMES = {
     iconColor: 'text-gray-600'
   },
   dark: {
-    bg: 'bg-[#121212]', // Very dark grey/almost black for OLED savings
-    appBg: 'bg-[#1E1E1E] border border-gray-800 shadow-2xl',
+    bg: 'bg-[#0f0f0f]',
+    appBg: 'bg-[#1a1a1a]',
+    cardBg: 'bg-[#242424]',
     text: 'text-white',
     displaySub: 'text-gray-400',
-    btn: 'bg-[#2C2C2C] hover:bg-[#383838] active:bg-[#404040] text-gray-100 border-none', // High contrast buttons
+    btn: 'bg-[#2C2C2C] hover:bg-[#383838] active:bg-[#404040] text-gray-100 border-none',
     btnAccent: 'bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-400 text-white shadow-lg shadow-indigo-500/20 font-bold',
     btnFunc: 'bg-[#424242] hover:bg-[#505050] active:bg-[#606060] text-white',
     iconColor: 'text-gray-300'
   },
-  // Custom uses transparency to show wallpaper
   custom: {
     bg: 'bg-cover bg-center bg-no-repeat',
-    appBg: 'bg-black/60 backdrop-blur-md border border-white/10 shadow-2xl', // Darker glass for better text readability
+    appBg: 'bg-black/70 backdrop-blur-md border border-white/10 shadow-2xl',
+    cardBg: 'bg-white/10 backdrop-blur-sm',
     text: 'text-white drop-shadow-md',
     displaySub: 'text-gray-300',
     btn: 'bg-white/10 hover:bg-white/20 active:bg-white/30 text-white border border-white/10 backdrop-blur-sm',
@@ -33,6 +35,18 @@ export const THEMES = {
     iconColor: 'text-white'
   }
 };
+
+export const TOOLS = [
+  { id: 'pct', name: 'Porcentagem', category: 'Álgebra', icon: '📊', color: 'from-orange-400 to-red-500' },
+  { id: 'geo', name: 'Formas', category: 'Geometria', icon: '📐', color: 'from-yellow-400 to-orange-500' },
+  { id: 'body', name: 'Corpos', category: 'Geometria', icon: '📦', color: 'from-yellow-500 to-yellow-600' },
+  { id: 'len', name: 'Comprimento', category: 'Conversores', icon: '📏', color: 'from-yellow-200 to-yellow-400' },
+  { id: 'wgt', name: 'Peso', category: 'Conversores', icon: '⚖️', color: 'from-gray-400 to-gray-600' },
+  { id: 'vol', name: 'Volume', category: 'Conversores', icon: '🪣', color: 'from-blue-400 to-blue-600' },
+  { id: 'curr', name: 'Moeda', category: 'Finanças', icon: '💰', color: 'from-yellow-400 to-yellow-500' },
+  { id: 'temp', name: 'Temperatura', category: 'Conversores', icon: '🌡️', color: 'from-red-400 to-orange-500' },
+  { id: 'vel', name: 'Velocidade', category: 'Conversores', icon: '🚗', color: 'from-red-500 to-red-600' },
+];
 
 export const BUTTON_LAYOUT = [
   { label: 'C', type: CalculatorActionType.CLEAR, style: 'func' },
